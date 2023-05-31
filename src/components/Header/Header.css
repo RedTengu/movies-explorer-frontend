@@ -1,0 +1,33 @@
+.header {
+  padding: 18px 0;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__nav-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  column-gap: 30px
+}
+
+.header__nav-link {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000;
+  transition: all .2s ease-in-out;
+}
+
+.header__nav-link_signin {
+  padding: 8px 20px;
+  color: #fff;
+  background-color: #000;
+  border-radius: 3px;
+}

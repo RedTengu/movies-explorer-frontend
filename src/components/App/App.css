@@ -6,4 +6,13 @@
   padding: 0 70px 0;
   font-family: 'Inter', Arial, sans-serif;
   color: #000;
+  background-color: #f3c1f8;
+}
+
+.hover-opacity-link:hover {
+  opacity: .7;
+}
+
+.hover-opacity-btn:hover {
+  opacity: .8;
 }
