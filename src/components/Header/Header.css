@@ -1,5 +1,6 @@
 .header {
   padding: 18px 0;
+  background-color: #f3c1f8;
 }
 
 .header__nav {
@@ -22,7 +23,6 @@
   font-size: 12px;
   line-height: 16px;
   color: #000;
-  transition: all .2s ease-in-out;
 }
 
 .header__nav-link_signin {
