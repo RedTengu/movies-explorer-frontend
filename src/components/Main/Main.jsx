@@ -1,6 +1,7 @@
 import Promo from '../Promo/Promo';
 import NavTab from '../NavTab/NavTab';
 import AboutProject from '../AboutProject/AboutProject';
+import Techs from '../Techs/Techs';
 
 import './Main.css';
 
@@ -9,9 +10,8 @@ function Main() {
     <main className="main">
       <Promo />
       <NavTab />
-      <div className="container">
-        <AboutProject />
-      </div>
+      <AboutProject />
+      <Techs />
     </main>
   )
 }
