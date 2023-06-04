@@ -9,6 +9,12 @@ html {
   color: #000;
 }
 
+.root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   box-sizing: border-box;
   max-width: 1280px;
