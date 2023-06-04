@@ -4,6 +4,8 @@ import Footer from '../Footer/Footer';
 
 import './App.css';
 
+// Ссылка на статичный не работает, сайт сломан.
+
 function App() {
   return (
     <>

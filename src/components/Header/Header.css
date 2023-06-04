@@ -3,6 +3,10 @@
   background-color: #f3c1f8;
 }
 
+.header_background_white {
+  background-color: #fff;
+}
+
 .header__nav {
   display: flex;
   justify-content: space-between;
@@ -25,7 +29,7 @@
   color: #000;
 }
 
-.header__nav-link_signin {
+.header__nav-link_type_signin {
   padding: 8px 20px;
   color: #fff;
   background-color: #000;
