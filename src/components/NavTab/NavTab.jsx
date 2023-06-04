@@ -6,7 +6,7 @@ function NavTab() {
       <ul className="nav-tab__list">
         <li><a className="nav-tab__link hover-opacity-link" href="#about-project">О проекте</a></li>
         <li><a className="nav-tab__link hover-opacity-link" href="#techs">Технологии</a></li>
-        <li><a className="nav-tab__link hover-opacity-link" href="#">Студент</a></li>
+        <li><a className="nav-tab__link hover-opacity-link" href="#about-me">Студент</a></li>
       </ul>
     </nav>
   )
