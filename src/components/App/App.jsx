@@ -1,16 +1,20 @@
+import { Routes, Route } from 'react-router-dom';
+
 import Header from '../Header/Header';
 import Main from '../Main/Main';
+import Movies from '../Movies/Movies';
 import Footer from '../Footer/Footer';
 
 import './App.css';
-
-// Ссылка на статичный не работает, сайт сломан.
 
 function App() {
   return (
     <>
       <Header />
-      <Main />
+      <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/movies" element={<Movies />} />
+      </Routes>
       <Footer />
     </>
   )

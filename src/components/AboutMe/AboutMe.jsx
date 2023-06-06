@@ -23,7 +23,7 @@ function AboutMe() {
           <h4 className="about-me__portfolio-title">Портфолио</h4>
           <ul className="about-me__portfolio-links">
             <li className="about-me__portfolio-item">
-              <a className="about-me__portfolio-link hover-opacity-link" href="#" target="_blank">
+              <a className="about-me__portfolio-link hover-opacity-link" href="https://redtengu.github.io/how-to-learn/" target="_blank">
                 Статичный сайт
               </a>
             </li>
