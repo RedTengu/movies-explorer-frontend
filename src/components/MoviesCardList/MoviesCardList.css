@@ -1,0 +1,27 @@
+.movies-cards__list {
+  margin: 0;
+  padding: 70px 0 30px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px 24px;
+}
+
+.movies-cards__more {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 0 80px;
+}
+
+.movies-cards__more-btn {
+  padding: 11px 0 9px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  border: none;
+}

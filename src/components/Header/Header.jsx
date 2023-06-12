@@ -1,40 +1,62 @@
-import { Route, Routes } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import './Header.css';
 import logo from '../../images/logo.svg';
 
 function Header() {
+  let location = useLocation();
+
   return (
     <>
-      <Routes>
-        <Route path='/' element={
+      {location.pathname === '/'
+        ?
           <header className="header header_background_pink">
             <div className="container">
               <nav className="header__nav">
-                <a className="header__nav-link hover-opacity-btn" href="/"><img src={logo} alt="Логотип Movies Explorer" /></a>
+                <Link className="header__nav-link hover-opacity-btn" to="/">
+                  <img src={logo} alt="Логотип Movies Explorer" />
+                </Link>
                 <ul className="header__nav-list header__nav-list_type_main">
-                  <li><a className="header__nav-link header__nav-link_type_main hover-opacity-link" href="#">Регистрация</a></li>
-                  <li><a className="header__nav-link header__nav-link_type_main header__nav-link_type_signin hover-opacity-btn" href="#">Войти</a></li>
+                  <li>
+                    <Link className="header__nav-link header__nav-link_type_main hover-opacity-link" to="/signup">
+                      Регистрация
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="header__nav-link header__nav-link_type_main header__nav-link_type_signin hover-opacity-btn" to="/signin">
+                      Войти
+                    </Link>
+                  </li>
                 </ul>
               </nav>
             </div>
           </header>
-        } />
-        <Route path='/*' element={
+        :
           <header className="header">
             <div className="container">
               <nav className="header__nav">
-                <a className="header__nav-link hover-opacity-btn" href="/"><img src={logo} alt="Логотип Movies Explorer" /></a>
+                <Link className="header__nav-link hover-opacity-btn" to="/">
+                  <img src={logo} alt="Логотип Movies Explorer" />
+                </Link>
                 <ul className="header__nav-list">
-                  <li><a className="header__nav-link hover-opacity-link" href="#">Фильмы</a></li>
-                  <li><a className="header__nav-link hover-opacity-link" href="#">Сохраненные фильмы</a></li>
+                  <li>
+                    <NavLink to="/movies" className={({isActive}) => `header__nav-link ${isActive ? "header__nav-link_active" : ""}`} href="#">
+                      Фильмы
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/saved-movies" className={({isActive}) => `header__nav-link ${isActive ? "header__nav-link_active" : ""}`} href="#">
+                      Сохраненные фильмы
+                    </NavLink>
+                  </li>
                 </ul>
-                <a className="header__nav-link header__nav-link_type_profile hover-opacity-btn" href="#">Аккаунт</a>
+                <Link className="header__nav-link header__nav-link_type_profile hover-opacity-btn" to="/profile">
+                  Аккаунт
+                </Link>
               </nav>
             </div>
           </header>
-        } />
-      </Routes>
+      }
     </>
   )
 }
