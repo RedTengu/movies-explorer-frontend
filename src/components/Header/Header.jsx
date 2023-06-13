@@ -1,7 +1,8 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
+import Logo from '../Logo/Logo';
+
 import './Header.css';
-import logo from '../../images/logo.svg';
 
 function Header() {
   let location = useLocation();
@@ -13,9 +14,7 @@ function Header() {
           <header className="header header_background_pink">
             <div className="container">
               <nav className="header__nav">
-                <Link className="header__nav-link hover-opacity-btn" to="/">
-                  <img src={logo} alt="Логотип Movies Explorer" />
-                </Link>
+                <Logo />
                 <ul className="header__nav-list header__nav-list_type_main">
                   <li>
                     <Link className="header__nav-link header__nav-link_type_main hover-opacity-link" to="/signup">
@@ -35,9 +34,7 @@ function Header() {
           <header className="header">
             <div className="container">
               <nav className="header__nav">
-                <Link className="header__nav-link hover-opacity-btn" to="/">
-                  <img src={logo} alt="Логотип Movies Explorer" />
-                </Link>
+                <Logo />
                 <ul className="header__nav-list">
                   <li>
                     <NavLink to="/movies" className={({isActive}) => `header__nav-link ${isActive ? "header__nav-link_active" : ""}`} href="#">

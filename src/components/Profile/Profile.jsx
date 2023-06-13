@@ -9,18 +9,40 @@ function Profile() {
           <div className="profile__inputs">
             <label className="profile__form-label" htmlFor="name">
               Имя 
-              <input className="profile__form-input" type="text" name="name" id="name" defaultValue="Виталий" readOnly />
+              <input 
+                className="profile__form-input" 
+                type="text" 
+                name="name" 
+                id="name"
+                placeholder="Ваше имя" 
+                defaultValue="Виталий" 
+                readOnly 
+                required/>
             </label>
             <label className="profile__form-label" htmlFor="email">
               E-mail 
-              <input className="profile__form-input" type="text" name="email" id="email" defaultValue="pochta@yandex.ru" readOnly />
+              <input 
+                className="profile__form-input" 
+                type="text" 
+                name="email" 
+                id="email"
+                placeholder="example@mail.com" 
+                defaultValue="pochta@yandex.ru" 
+                readOnly 
+                required/>
             </label>
           </div>
           <div className="profile__btns">
-            <button className="profile__btn hover-opacity-btn" type="button" aria-label="Редактировать профиль">
+            <button 
+              className="profile__btn hover-opacity-btn" 
+              type="button" 
+              aria-label="Редактировать профиль">
               Редактировать
             </button>
-            <button className="profile__btn profile__btn_type_signout hover-opacity-btn" type="button" aria-label="Выйти из аккаунта">
+            <button 
+              className="profile__btn profile__btn_type_signout hover-opacity-btn" 
+              type="button" 
+              aria-label="Выйти из аккаунта">
               Выйти из аккаунта
             </button>
           </div>
