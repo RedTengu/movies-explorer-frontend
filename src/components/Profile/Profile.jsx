@@ -34,13 +34,13 @@ function Profile() {
           </div>
           <div className="profile__btns">
             <button 
-              className="profile__btn hover-opacity-btn" 
+              className="profile__btn hover-opacity-link" 
               type="button" 
               aria-label="Редактировать профиль">
               Редактировать
             </button>
             <button 
-              className="profile__btn profile__btn_type_signout hover-opacity-btn" 
+              className="profile__btn profile__btn_type_signout hover-opacity-link" 
               type="button" 
               aria-label="Выйти из аккаунта">
               Выйти из аккаунта

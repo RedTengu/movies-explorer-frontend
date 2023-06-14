@@ -37,12 +37,12 @@ function Header() {
                 <Logo />
                 <ul className="header__nav-list">
                   <li>
-                    <NavLink to="/movies" className={({isActive}) => `header__nav-link ${isActive ? "header__nav-link_active" : ""}`} href="#">
+                    <NavLink to="/movies" className={({isActive}) => `header__nav-link hover-opacity-link ${isActive ? "header__nav-link_active" : ""}`} href="#">
                       Фильмы
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/saved-movies" className={({isActive}) => `header__nav-link ${isActive ? "header__nav-link_active" : ""}`} href="#">
+                    <NavLink to="/saved-movies" className={({isActive}) => `header__nav-link hover-opacity-link ${isActive ? "header__nav-link_active" : ""}`} href="#">
                       Сохраненные фильмы
                     </NavLink>
                   </li>

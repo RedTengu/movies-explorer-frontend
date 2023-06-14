@@ -18,8 +18,6 @@ function App() {
   const headerPaths = ['/', '/movies', '/saved-movies', '/profile'];
   const footerPaths = ['/', '/movies', '/saved-movies'];
 
-  // ФОКУС ФОРМ!
-  // Стили кнопок и ссылок
   return (
     <>
       {headerPaths.includes(location.pathname) ? <Header /> : "" }
