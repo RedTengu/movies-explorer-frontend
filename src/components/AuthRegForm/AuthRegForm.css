@@ -32,6 +32,10 @@
   margin: 69px 0 0;
 }
 
+.form__btn-wrapper_type_login {
+  margin: 179px 0 0;
+}
+
 .form-redirect {
   margin: 16px 0 0;
   display: flex;

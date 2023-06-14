@@ -20,7 +20,7 @@ function AuthRegForm({ btnText, btnLabel, formName, isRegister, children }) {
           {children}
         </div>
         <span className="form__error"></span>
-        <div className="form__btn-wrapper">
+        <div className={isRegister ? "form__btn-wrapper" : "form__btn-wrapper_type_login"}>
           <SubmitButton text={btnText} label={btnLabel} />
         </div>
       </form>
