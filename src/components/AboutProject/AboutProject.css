@@ -5,7 +5,7 @@
 .about__text-container {
   margin: 70px 0 0;
   display: flex;
-  column-gap: 40px;
+  column-gap: 52px;
 }
 
 .about__text-title {
@@ -44,7 +44,7 @@
 
 .about__scale-title {
   margin: 0;
-  padding: 9px 0;
+  padding: 9px 0 10px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;

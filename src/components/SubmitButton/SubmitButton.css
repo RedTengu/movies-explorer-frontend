@@ -5,5 +5,8 @@
   border: none;
   border-radius: 3px;
   color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
   background-color: #000;
 }
