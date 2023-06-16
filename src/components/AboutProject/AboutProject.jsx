@@ -19,7 +19,7 @@ function AboutProject() {
         </div>
         <div className="about__scale-container">
           <div className="about__scale about__scale_small">
-            <p className="about__scale-title about__scale-title_black">1 неделя</p>
+            <p className="about__scale-title about__scale-title_color_black">1 неделя</p>
             <p className="about__scale-caption">Back-end</p>
           </div>
           <div className="about__scale">

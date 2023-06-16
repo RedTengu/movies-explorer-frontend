@@ -10,7 +10,7 @@ function AboutMe() {
         <LandingTitle text="Студент" />
         <div className="about-me__info-wrapper">
           <div className="about-me__info">
-            <h3 className="about-me__name large-text">Мурат</h3>
+            <h3 className="about-me__name">Мурат</h3>
             <p className="about-me__description">Фронтенд-разработчик, 27 лет</p>
             <p className="about-me__bio">
               Закончил экономический факультет СтГАУ, специальность "Информационные системы и технологии". Увлекаюсь искусством во всех его проявлениях. Нахожусь в поиске работы.

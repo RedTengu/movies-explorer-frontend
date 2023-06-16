@@ -17,6 +17,10 @@
 
 .about-me__name {
   margin: 0;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
 }
 
 .about-me__description {
@@ -96,4 +100,59 @@
   width: 29px;
   background: url(../../images/arrow-link.svg) no-repeat;
   background-position: top 19px center;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me {
+    padding: 90px 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__description {
+    margin: 16px 0 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__bio {
+    margin: 20px 0 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__github {
+    margin: 123px 0 0;
+  }
+} 
+
+@media screen and (max-width: 768px) {
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__portfolio {
+    margin: 90px 0 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__portfolio-link {
+    font-size: 28px;
+    line-height: 50px;
+  }
 }

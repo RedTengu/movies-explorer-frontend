@@ -9,8 +9,19 @@
 }
 
 .promo__title {
-  margin: 0;
-  padding: 181px 205px 223px;
-  max-width: 750px;
+  max-width: 730px;
+  margin: 181px 0 223px;
   text-align: center;
 }
+
+@media screen and (max-width: 768px) {
+  .promo {
+    background-position: top 221px center;
+  }
+} 
+
+@media screen and (max-width: 768px) {
+  .promo__title {
+    margin: 323px 0 342px;
+  }
+} 
