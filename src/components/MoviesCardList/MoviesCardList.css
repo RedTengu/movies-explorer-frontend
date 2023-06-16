@@ -25,3 +25,10 @@
   border-radius: 6px;
   border: none;
 }
+
+@media screen and (max-width: 768px) {
+  .movies-cards__list {
+    justify-content: flex-start;
+    gap: 36px 30px;
+  }
+} 

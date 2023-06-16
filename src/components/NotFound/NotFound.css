@@ -27,3 +27,9 @@
   line-height: 17px;
   color: #000;
 }
+
+@media screen and (max-width: 768px) {
+  .not-found {
+    padding: 120px 0 0;
+  }
+} 

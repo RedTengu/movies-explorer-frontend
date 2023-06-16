@@ -72,3 +72,21 @@
   line-height: 16px;
   color: #ff4062;
 }
+
+@media screen and (max-width: 768px) {
+  .profile {
+    padding: 231px 0 70px;
+  }
+} 
+
+@media screen and (max-width: 768px) {
+  .profile__inputs {
+    margin: 81px 0 0;
+  }
+} 
+
+@media screen and (max-width: 768px) {
+  .profile__btns {
+    margin: 191px 0 0;
+  }
+} 
