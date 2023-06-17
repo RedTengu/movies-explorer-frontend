@@ -1,0 +1,72 @@
+.card {
+  width: 364px;
+  height: 271px;
+  display: flex;
+  flex-direction: column;
+  background: #fdfdfd;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card__info-wrapper {
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.card__duration {
+  margin: 9px 0 0;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #a0a0a0;
+}
+
+.card__btn {
+  padding: 15px;
+  background-color: #f9f9f9;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+}
+
+.card__btn_type_save {
+  background-image: url(../../images/favorite-btn.svg);
+}
+
+.card__btn_type_save-active {
+  background-color: #000;
+  background-image: url(../../images/favorite-btn-active.svg);
+}
+
+.card__btn_type_delete {
+  background-image: url(../../images/delete-icon.svg);
+}
+
+@media screen and (max-width: 892px) {
+  .card {
+    width: 339px;
+    height: 258px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .card {
+    width: 300px;
+    height: 236px;
+  }
+} 
