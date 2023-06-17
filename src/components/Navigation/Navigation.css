@@ -84,3 +84,21 @@
   cursor: pointer;
   border: none;
 }
+
+@media screen and (max-width: 480px) {
+  .navigation__list_type_main {
+    column-gap: 14px;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .navigation__link_type_main {
+    font-size: 10px;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .navigation__link_type_signin {
+    padding: 7px 12px;
+  }
+}

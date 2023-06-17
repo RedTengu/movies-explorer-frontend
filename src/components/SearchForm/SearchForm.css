@@ -58,4 +58,26 @@
   .search__field {
     padding: 0 19px 0 25px;
   }
+}
+
+@media screen and (max-width: 480px) {
+  .search {
+    padding: 80px 0 109px;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .search__wrapper {
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 0;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .search__field {
+    padding: 25px 19px;
+    background: #f9f9f9;
+    border-radius: 9px;
+  }
 } 

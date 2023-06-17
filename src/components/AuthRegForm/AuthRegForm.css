@@ -54,3 +54,41 @@
   text-decoration: none;
   color: #000;
 }
+
+@media screen and (max-width: 480px) {
+  .form-header {
+    text-align: center;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .form-header__title {
+    margin: 47px 0 0;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .form__inputs {
+    margin: 80px 0 0;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .form__btn-wrapper {
+    margin: 157px 0 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form__btn-wrapper_type_login {
+    margin: 245px 0 0;
+  } 
+}
+
+@media screen and (max-width: 480px) {
+  .form-redirect {
+    margin: 14px 0 0;
+    font-size: 12px;
+    line-height: 15px;
+  }
+} 

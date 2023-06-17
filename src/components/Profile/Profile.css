@@ -90,3 +90,28 @@
     margin: 191px 0 0;
   }
 } 
+
+@media screen and (max-width: 480px) {
+  .profile {
+    padding: 64px 30px 40px;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .profile__inputs {
+    margin: 65px 0 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile__btns {
+    margin: 360px 0 0;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .profile__btn {
+    font-size: 12px;
+    line-height: 15px;
+  }
+} 

@@ -72,3 +72,11 @@
     padding: 0 20px 0 19px;
   }
 } 
+
+@media screen and (max-width: 480px) {
+  .search__filter {
+    margin: 45px;
+    padding: 0;
+    border: none;
+  }
+} 

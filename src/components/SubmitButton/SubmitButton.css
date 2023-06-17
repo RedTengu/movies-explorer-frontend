@@ -10,3 +10,11 @@
   line-height: 17px;
   background-color: #000;
 }
+
+@media screen and (max-width: 480px) {
+  .submit-btn {
+    padding: 15px 0 15px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+} 

@@ -7,3 +7,11 @@
   letter-spacing: -0.04em;
   border-bottom: 1px solid #000;
 }
+
+@media screen and (max-width: 480px) {
+  .landing-title {
+    padding: 0 0 28px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+} 

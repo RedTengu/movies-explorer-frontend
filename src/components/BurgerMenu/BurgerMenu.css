@@ -40,3 +40,9 @@
   cursor: pointer;
   border: none;
 }
+
+@media screen and (max-width: 480px) {
+  .burger-menu__body {
+    width: 100%;
+  }
+} 

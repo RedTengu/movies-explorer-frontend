@@ -18,3 +18,15 @@
   line-height: 16px;
   color: #FFFFFF;
 }
+
+@media screen and (max-width: 480px) {
+  .nav-tab__list {
+    column-gap: 24px
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .nav-tab__link {
+    font-size: 11px;
+  }
+} 

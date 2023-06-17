@@ -43,3 +43,48 @@
   text-decoration: none;
   color: #000;
 }
+
+@media screen and (max-width: 480px) {
+  .footer {
+    padding: 79px 0px 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer__caption {
+    font-size: 12px;
+    line-height: 15px;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .footer__info {
+    margin: 27px 0 0;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer__copyright {
+    font-size: 12px;
+    line-height: 15px;
+    color: #a0a0a0;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .footer__links {
+    gap: 8px;
+    text-align: center;
+    flex-direction: column;
+    order: -1;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  .footer__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+} 

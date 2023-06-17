@@ -11,17 +11,37 @@
 .promo__title {
   max-width: 730px;
   margin: 181px 0 223px;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
   text-align: center;
+  letter-spacing: -0.04em;
 }
 
 @media screen and (max-width: 768px) {
   .promo {
     background-position: top 221px center;
   }
-} 
+}
 
 @media screen and (max-width: 768px) {
   .promo__title {
     margin: 323px 0 342px;
   }
+}
+
+@media screen and (max-width: 480px) {
+  .promo {
+    background-size: 248px;
+    background-position: top 139px center;
+  }
 } 
+
+@media screen and (max-width: 480px) {
+  .promo__title {
+    margin: 204px 0 245px;
+    max-width: 300px;
+    font-size: 31px;
+    line-height: 39px;
+  }
+}
