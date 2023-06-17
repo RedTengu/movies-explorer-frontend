@@ -19,9 +19,15 @@ function MoviesCardList() {
       <ul className="movies-cards__list">
         {size.width <= 768
           ?
-            movies.slice(0, 8).map((movie, i) => {
-              return <MoviesCard key={i} movie={movie} />
-            })
+            size.width <= 480
+              ?
+                movies.slice(0, 5).map((movie, i) => {
+                  return <MoviesCard key={i} movie={movie} />
+                })
+              :
+                movies.slice(0, 8).map((movie, i) => {
+                  return <MoviesCard key={i} movie={movie} />
+                })
           :
             movies.map((movie, i) => {
               return <MoviesCard key={i} movie={movie} />
