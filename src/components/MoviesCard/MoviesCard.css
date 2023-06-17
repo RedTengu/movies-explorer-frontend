@@ -57,9 +57,16 @@
   background-image: url(../../images/delete-icon.svg);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 892px) {
   .card {
     width: 339px;
     height: 258px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .card {
+    width: 300px;
+    height: 236px;
   }
 } 

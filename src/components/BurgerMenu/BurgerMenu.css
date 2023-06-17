@@ -45,4 +45,11 @@
   .burger-menu__body {
     width: 100%;
   }
+}
+
+@media screen and (max-width: 480px) {
+  .burger-menu__close {
+    top: 18px;
+    right: 18px;
+  }
 } 

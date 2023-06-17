@@ -73,10 +73,16 @@
   }
 } 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 550px) {
   .search__filter {
-    margin: 45px;
+    margin: 0 auto;
     padding: 0;
     border: none;
   }
-} 
+}
+
+@media screen and (max-width: 550px) {
+  .search__checkbox-label {
+    font-size: 11px;
+  }
+}

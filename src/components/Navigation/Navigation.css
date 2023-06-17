@@ -102,3 +102,16 @@
     padding: 7px 12px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .navigation-wrapper_type_burger {
+    margin: 145px 0 0;
+    gap: 444px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navigation__list_type_burger {
+    gap: 24px;
+  }
+}

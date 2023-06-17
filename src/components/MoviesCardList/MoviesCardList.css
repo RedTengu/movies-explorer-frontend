@@ -26,9 +26,22 @@
   border: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (width: 768px) {
   .movies-cards__list {
     justify-content: flex-start;
     gap: 36px 30px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .movies-cards__list {
+    padding: 40px 0 30px;
+    row-gap: 16px;
+  }
+} 
+
+@media screen and (max-width: 550px) {
+  .movies-cards__more {
+    padding: 50px 0 82px;
   }
 } 
