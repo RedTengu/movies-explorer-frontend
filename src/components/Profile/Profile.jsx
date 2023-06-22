@@ -6,15 +6,22 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 import './Profile.css';
 
 function Profile({ onLogout, onUpdateUser }) {
+  // Получаем текущего пользователя
   const currentUser = useContext(CurrentUserContext);
 
+  // Стейт значений инпутов
   const [ formValues, setFormValues ] = useState({
     name: '',
     email: ''
   });
-  
-  const [ isEditClicked, setIsEditClicked ] = useState(false);
 
+  // Стейт кнопки редактирования
+  const [ isEditClicked, setIsEditClicked ] = useState(false);
+ 
+  // Получаем все инпуты в профиле
+  const inputsList = document.querySelectorAll('input');
+
+  // При изменении текущего пользователя - записываем значения в стейт
   useEffect(() => {
     setFormValues({
       name: currentUser.name,
@@ -22,6 +29,7 @@ function Profile({ onLogout, onUpdateUser }) {
     });
   }, [currentUser]); 
 
+  // Достаем значения форм и записываем в стейт
   const handleChange = (e) => {
     const {name, value} = e.target;
     
@@ -31,9 +39,8 @@ function Profile({ onLogout, onUpdateUser }) {
     });
   };
 
+  // При нажатии на редактирование убираем readOnly и устанавливаем фокус
   const handleEditUser = () => {
-    const inputsList = document.querySelectorAll('input');
-
     inputsList.forEach(input => {
       input.removeAttribute('readOnly');
     });
@@ -43,12 +50,17 @@ function Profile({ onLogout, onUpdateUser }) {
     setIsEditClicked(true);
   }
 
+  // Отправляем новые значения на сервер, возвращаем readOnly
   const handleSubmit = (e) => {
     e.preventDefault();
     
     const { name, email } = formValues;
 
     onUpdateUser(name, email);
+
+    inputsList.forEach(input => {
+      input.setAttribute('readOnly', true);
+    });
 
     setIsEditClicked(false);
   }
