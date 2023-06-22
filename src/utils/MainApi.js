@@ -1,4 +1,4 @@
-export default class MainApi {
+class MainApi {
     constructor({ url, headers}) {
       this._url = url;
       this._headers = headers;
@@ -17,7 +17,7 @@ export default class MainApi {
         .then(res => this._isResponse(res))
     }
   
-    patchProfileInfo({ name, email }) {
+    patchProfileInfo(name, email) {
       return fetch(`${this._url}/users/me`, {
         method: 'PATCH',
         headers: this._headers,
@@ -63,3 +63,5 @@ export default class MainApi {
       .then(res => this._isResponse(res))
     }
   }
+
+  export default MainApi;

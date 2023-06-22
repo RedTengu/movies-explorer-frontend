@@ -5,7 +5,7 @@ import SubmitButton from '../SubmitButton/SubmitButton';
 
 import './AuthRegForm.css';
 
-function AuthRegForm({ btnText, btnLabel, formName, isRegister, children }) {
+function AuthRegForm({ btnText, btnLabel, formName, isRegister, onSubmit, children }) {
   return (
     <div className="form-wrapper">
       <div className="form-header">
@@ -15,7 +15,7 @@ function AuthRegForm({ btnText, btnLabel, formName, isRegister, children }) {
           : <h1 className="form-header__title">Рады видеть!</h1>
         }
       </div>
-      <form className="form" name={formName}>
+      <form className="form" name={formName} onSubmit={onSubmit}>
         <div className="form__inputs">
           {children}
         </div>

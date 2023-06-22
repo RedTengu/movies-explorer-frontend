@@ -2,7 +2,6 @@ import { useLocation } from 'react-router-dom';
 import useResize from '../../hooks/useResize';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
-import testMovies from '../../utils/testMovies';
 
 import './MoviesCardList.css';
 
@@ -10,14 +9,14 @@ function MoviesCardList() {
   let location = useLocation();
   let size = useResize();
 
-  const movies = location.pathname === '/saved-movies'
-    ? testMovies.filter(movie => movie.isLiked)
-    : testMovies
+  // const movies = location.pathname === '/saved-movies'
+  //   ? testMovies.filter(movie => movie.isLiked)
+  //   : testMovies
 
   return (
     <section className="movies-cards">
       <ul className="movies-cards__list">
-        {size.width <= 768
+        {/* {size.width <= 768
           ?
             size.width <= 480
               ?
@@ -32,7 +31,7 @@ function MoviesCardList() {
             movies.map((movie, i) => {
               return <MoviesCard key={i} movie={movie} />
             })
-        }
+        } */}
       </ul>
       {location.pathname === '/movies'
        ?

@@ -1,6 +1,6 @@
 import './InputForm.css';
 
-function InputForm({ inputLabel, type, name, id, placeholder }) {
+function InputForm({ inputLabel, type, name, id, placeholder, onChange, value }) {
   return (
     <>
       <label className="input__label" htmlFor={id}>
@@ -13,7 +13,8 @@ function InputForm({ inputLabel, type, name, id, placeholder }) {
             name={name} 
             id={id}
             placeholder={placeholder}
-            defaultValue="" 
+            onChange={onChange}
+            value={value} 
             required/>
       </div>
     </>
