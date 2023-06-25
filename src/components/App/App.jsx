@@ -7,6 +7,7 @@ import Header from '../Header/Header';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import Message from '../Message/Message';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Movies from '../Movies/Movies';
@@ -21,10 +22,7 @@ import moviesApi from '../../utils/MoviesApi';
 import './App.css';
 
 function App() {
-  // Доделать валидацию, показ сообщений, блокирование кнопок
-  // Заблокировать кнопку, если пользователь вводит те же данные, что и были
   // Внедрить прелоадер
-  // Автоматический логин, после регистрации(?)
   // Доделать работу c MoviesApi
 
   // Перемещаем в нужный роут
@@ -34,7 +32,7 @@ function App() {
   // Список путей для хэдера и футера
   const headerPaths = ['/', '/movies', '/saved-movies', '/profile'];
   const footerPaths = ['/', '/movies', '/saved-movies'];
-  // Инициализация экземпляра MainApi
+  // Инициализация MainApi
   const mainApi = new MainApi({
     url: 'https://api.redtengu.nomoredomains.rocks',
     headers: {
@@ -47,12 +45,26 @@ function App() {
 
   // Бургер
   const [ isBurgerOpen, setIsBurgerOpen ] = useState(false);
+  // Уведомление
+  const [ isMessageOpen, setIsMessageOpen ] = useState(false);
+  // Тексты ошибок
+  const [ errorMessage, setErrorMessage ] = useState('');
+  // Тексты уведомлений
+  const [ textMessage, setTextMessage ] = useState('');
+  // Уведомление успешно?
+  const [ isSucces, setIsSucces ] = useState(false);
   // Залогинен?
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
   // Текущий пользователь
   const [ currentUser, setCurrentUser ] = useState({});
   // Фильмы
   const [ movies, setMovies ] = useState([]);
+
+  // Стейт кнопки редактирования
+  const [ isEditClicked, setIsEditClicked ] = useState(false);
+ 
+  // Стейт атрибута readOnly
+  const [ readOnly, setReadOnly ] = useState(true);
 
   // Эффекты
   
@@ -72,6 +84,13 @@ function App() {
         .catch((error) => console.log(error));
     }
   }, []);
+
+  // Уведомление исчезает через какое то время
+  useEffect(() => {
+    setTimeout(() => {
+      setIsMessageOpen(false);
+    }, 3000);
+  }, [isMessageOpen]);
 
   // Получаем данные пользователя и фильмов с сервера, если залогинен
   useEffect(() => {
@@ -102,16 +121,34 @@ function App() {
 
   // Функции
 
+  // Обработка ошибок Api
+  const handleError = (err) => {
+    if(err.includes('400')) {
+      setErrorMessage('Введены некорректные данные.');
+    }
+    if(err.includes('401')) {
+      setErrorMessage('Неверный логин или пароль.');
+    }
+    if(err.includes('409')) {
+      setErrorMessage('Такой пользователь уже существует.');
+    }
+  }
+
   // Регистрация
   const handleRegister = (name, email, password) => {
     authApi.register(name, email, password)
-      .then(res => {
-        return res;
-      })
       .then(() => {
-        navigate("/signin", {replace: true});
+        handleLogin(email, password);
+
+        setIsSucces(true);
+        setIsMessageOpen(true);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setIsSucces(false);
+        setIsMessageOpen(true);
+        handleError(err);
+        console.log(err)
+      });
   };
 
   // Авторизация
@@ -122,9 +159,18 @@ function App() {
           localStorage.setItem('jwt', res.token);
           setIsLoggedIn(true);
           navigate('/movies', {replace: true});
+
+          setIsSucces(true);
+          setIsMessageOpen(true);
+          setTextMessage('Вы успешно вошли!');
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setIsSucces(false);
+        setIsMessageOpen(true);
+        handleError(err);
+        console.log(err);
+      });
   };
 
   // Редактирование профиля
@@ -132,8 +178,28 @@ function App() {
     mainApi.patchProfileInfo(name, email)
       .then(() => {
         setCurrentUser({...currentUser, name, email});
+
+        setIsSucces(true);
+        setIsMessageOpen(true);
+        setTextMessage('Профиль успешно обновлен!');
       })
-      .catch(err => console.log(err));
+      .then(() => {
+        // Скрываем кнопку, только если запрос удачный
+        setIsEditClicked(false);
+        setReadOnly(true);
+      })
+      .catch(err => {
+        setIsSucces(false);
+        setIsMessageOpen(true);
+        handleError(err);
+        console.log(err);
+      });
+  }
+
+  // При нажатии на "Редактировать" убираем readOnly и показываем кнопку "Сохранить"
+  const handleEditUser = () => {
+    setReadOnly(false);
+    setIsEditClicked(true);
   }
 
   // Выход
@@ -141,16 +207,25 @@ function App() {
     setIsLoggedIn(false);
     localStorage.removeItem('jwt');
     navigate('/', { replace: true });
+    
+    setIsSucces(true);
+    setIsMessageOpen(true);
+    setTextMessage('Вы вышли из аккаунта.');
   }
 
-  // Клик по бургеру
+  // Открыть бургер
   const handleBurgerClick = () => {
-    setIsBurgerOpen(!isBurgerOpen);
+    setIsBurgerOpen(isBurgerOpen);
   };
   
   // Закрыть бургер
   const handleCloseBurger = () => {
     setIsBurgerOpen(false)
+  };
+
+  // Закрыть уведомление
+  const handleCloseMessage = () => {
+    setIsMessageOpen(false)
   };
 
   // Закрытие бургера по клавише esc
@@ -199,15 +274,26 @@ function App() {
               element={SavedMovies} />} />
               
           <Route path="profile" element={
-            <ProtectedRoute 
+            <ProtectedRoute
               isLoggedIn={isLoggedIn}
               element={Profile}
               onLogout={handleLogout}
-              onUpdateUser={handleUpdateUser} />} />
+              onUpdateUser={handleUpdateUser} 
+              readOnly={readOnly} 
+              isEditClicked={isEditClicked}
+              onEditUser={handleEditUser} />} />
       </Routes>
       {footerPaths.includes(location.pathname) ? <Footer /> : "" }
 
       <BurgerMenu isOpen={isBurgerOpen} onClose={handleCloseBurger} />
+
+      <Message 
+        isOpen={isMessageOpen} 
+        isSucces={isSucces} 
+        text={textMessage}
+        errorText={errorMessage} 
+        onClose={handleCloseMessage} />
+
     </CurrentUserContext.Provider>
   )
 }

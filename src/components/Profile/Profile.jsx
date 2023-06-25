@@ -1,114 +1,92 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { useValidation } from "../../hooks/useValidation"; 
+
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 import SubmitButton from "../SubmitButton/SubmitButton";
 
 import './Profile.css';
 
-function Profile({ onLogout, onUpdateUser }) {
+function Profile({ onLogout, onUpdateUser, readOnly, isEditClicked, onEditUser }) {
+  const { values, setValues, errors, isValid, setIsValid, handleChange } = useValidation();
+
   // Получаем текущего пользователя
   const currentUser = useContext(CurrentUserContext);
 
-  // Стейт значений инпутов
-  const [ formValues, setFormValues ] = useState({
-    name: '',
-    email: ''
-  });
-
-  // Стейт кнопки редактирования
-  const [ isEditClicked, setIsEditClicked ] = useState(false);
- 
-  // Получаем все инпуты в профиле
-  const inputsList = document.querySelectorAll('input');
-
-  // При изменении текущего пользователя - записываем значения в стейт
+  // При изменении текущего пользователя - записываем значения в стейт полей
   useEffect(() => {
-    setFormValues({
-      name: currentUser.name,
-      email: currentUser.email
-    });
-  }, [currentUser]); 
+    setValues(currentUser);
+  }, [currentUser]);
 
-  // Достаем значения форм и записываем в стейт
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-    
-    setFormValues({
-      ...formValues,
-      [name]: value
-    });
-  };
+  // При измененении значений полей - провеяем на соответствие.
+  useEffect(() => {
+    handleCheckUser();
+  }, [values]);
 
-  // При нажатии на редактирование убираем readOnly и устанавливаем фокус
-  const handleEditUser = () => {
-    inputsList.forEach(input => {
-      input.removeAttribute('readOnly');
-    });
-
-    inputsList[0].focus();
-
-    setIsEditClicked(true);
+  // Проверка соответствия значений инпутов и текущего пользователя
+  const handleCheckUser = () => {
+    if(values.name === currentUser.name && values.email === currentUser.email) {
+      setIsValid(false);
+    }
   }
 
   // Отправляем новые значения на сервер, возвращаем readOnly
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const { name, email } = formValues;
+    const { name, email } = values;
 
     onUpdateUser(name, email);
-
-    inputsList.forEach(input => {
-      input.setAttribute('readOnly', true);
-    });
-
-    setIsEditClicked(false);
   }
 
   return (
     <main className="main">
       <section className="profile">
-        <form className="profile__form" name="profile-form" onSubmit={handleSubmit}>
+        <form className="profile__form" name="profile-form" onSubmit={handleSubmit} noValidate>
           <h1 className="profile__title">{`Привет, ${currentUser.name}!`}</h1>
           <div className="profile__inputs">
             <label className="profile__form-label" htmlFor="name">
               Имя 
               <input 
-                className="profile__form-input" 
+                className={`profile__form-input ${errors.name ? "profile__form-input_type_error" : ""}`} 
                 type="text" 
                 name="name" 
                 id="name"
+                minLength="2"
+                maxLength="30"
                 placeholder="Ваше имя"
                 onChange={handleChange}
-                value={formValues.name || ''}
-                readOnly 
+                value={values.name || ''}
+                readOnly={readOnly}
+                autoComplete="off"
                 required/>
             </label>
             <label className="profile__form-label" htmlFor="email">
               E-mail 
               <input 
-                className="profile__form-input" 
-                type="text" 
+                className={`profile__form-input ${errors.email ? "profile__form-input_type_error" : ""}`}
+                type="email" 
                 name="email" 
                 id="email"
                 placeholder="example@mail.com"
                 onChange={handleChange}
-                value={formValues.email || ''}
-                readOnly 
+                value={values.email || ''}
+                readOnly={readOnly}
+                autoComplete="off"
                 required/>
             </label>
           </div>
           <div className="profile__btns">
             {isEditClicked
               ?
-                <SubmitButton text="Сохранить" label="Сохранить информацию" />
+                <SubmitButton text="Сохранить" label="Сохранить информацию" isValid={isValid} />
               :
                 <>
                   <button 
                     className="profile__btn hover-opacity-link" 
                     type="button" 
                     aria-label="Редактировать профиль"
-                    onClick={handleEditUser}>
+                    onClick={onEditUser}>
                     Редактировать
                   </button>
                   <button 
