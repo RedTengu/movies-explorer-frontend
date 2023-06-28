@@ -29,34 +29,34 @@ class MainApi {
       .then(res => this._isResponse(res))
     }
   
-    getMovies() {
+    getSavedMovies() {
       return fetch(`${this._url}/movies`, { headers: this._headers })
         .then(res => this._isResponse(res))
     }
   
-    createMovie({ country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId }) {
+    saveMovie(movie) {
       return fetch(`${this._url}/movies`, {
         method: 'POST',
         headers: this._headers,
         body: JSON.stringify({
-          country, 
-          director, 
-          duration, 
-          year, 
-          description, 
-          image, 
-          trailer, 
-          nameRU, 
-          nameEN,
-          thumbnail, 
-          movieId
+          country: movie.country,
+          description: movie.description,
+          director: movie.director,
+          duration: movie.duration,
+          movieId: movie.id,
+          image: `https://api.nomoreparties.co/${movie.image.url}`,
+          thumbnail: `https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`,
+          nameEN: movie.nameEN,
+          nameRU: movie.nameRU,
+          trailerLink: movie.trailerLink,
+          year: movie.year
         })
       })
       .then(res => this._isResponse(res))
     }
   
-    deleteMovie({ movieId }) {
-      return fetch(`${this._url}/movies/${movieId}`, {
+    deleteMovie(id) {
+      return fetch(`${this._url}/movies/${id}`, {
         method: 'DELETE',
         headers: this._headers
       })

@@ -22,8 +22,9 @@ import moviesApi from '../../utils/MoviesApi';
 import './App.css';
 
 function App() {
-  // Внедрить прелоадер
-  // Доделать работу c MoviesApi
+  // Дисклеймер к работе
+  // Понимаю, что все можно было сделать гораздо лаконичнее
+  // Но уже очень мало времени осталось :(
 
   // Перемещаем в нужный роут
   const navigate = useNavigate();
@@ -57,14 +58,14 @@ function App() {
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
   // Текущий пользователь
   const [ currentUser, setCurrentUser ] = useState({});
-  // Фильмы
-  const [ movies, setMovies ] = useState([]);
-
   // Стейт кнопки редактирования
   const [ isEditClicked, setIsEditClicked ] = useState(false);
- 
-  // Стейт атрибута readOnly
+  // Стейт атрибута readOnly форм
   const [ readOnly, setReadOnly ] = useState(true);
+  // Фильмы
+  const [ movies, setMovies ] = useState([]);
+  // Сохраненные фильмы
+  const [ savedMovies, setSavedMovies ] = useState([]);
 
   // Эффекты
   
@@ -85,23 +86,39 @@ function App() {
     }
   }, []);
 
-  // Уведомление исчезает через какое то время
-  useEffect(() => {
-    setTimeout(() => {
-      setIsMessageOpen(false);
-    }, 3000);
-  }, [isMessageOpen]);
-
-  // Получаем данные пользователя и фильмов с сервера, если залогинен
+  // Получаем данные пользователя и сохр. фильмов, если залогинен
   useEffect(() => {
     isLoggedIn &&
-      Promise.all([mainApi.getProfileInfo(), mainApi.getMovies()])
+      Promise.all([mainApi.getProfileInfo(), mainApi.getSavedMovies()])
         .then(([user, movies]) => {
           setCurrentUser(user);
 
-          setMovies(movies);
+          setSavedMovies(movies);
+          localStorage.setItem('savedMovies', JSON.stringify(movies));
       })
         .catch(err => console.log(err));
+  }, [isLoggedIn]);
+
+  // Обновление сохр. фильмов в хранилище, при их изменении
+  useEffect(() => {
+    isLoggedIn && localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+  }, [savedMovies, isLoggedIn]);
+
+  // Получаем фильмы с внешнего Api и сохраняем в локальное хранилище
+  useEffect(() => {
+    if (isLoggedIn) {
+      if (localStorage.getItem('movies')) {
+        setMovies(JSON.parse(localStorage.getItem('movies')));
+      } else {
+        moviesApi.getData()
+          .then(data => {
+            localStorage.setItem('movies', JSON.stringify(data));
+
+            setMovies(data);
+          })
+          .catch(err => console.log(err));
+      }
+    }
   }, [isLoggedIn]);
 
   // Закрытие меню-бургера
@@ -118,6 +135,13 @@ function App() {
       document.removeEventListener('click', handleLinkClose)
     };
   }, [isBurgerOpen]);
+
+  // Уведомление исчезает через какое то время
+  useEffect(() => {
+    setTimeout(() => {
+      setIsMessageOpen(false);
+    }, 3000);
+  }, [isMessageOpen]);
 
   // Функции
 
@@ -205,13 +229,43 @@ function App() {
   // Выход
   const handleLogout = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem('jwt');
+    localStorage.clear();
     navigate('/', { replace: true });
     
     setIsSucces(true);
     setIsMessageOpen(true);
     setTextMessage('Вы вышли из аккаунта.');
   }
+
+  // Если сохранен - удалить, иначе - сохранить
+  const handleSaveMovie = (movie, movieId, isSaved) => {
+    if (isSaved) {
+      handleDeleteMovie(movieId);
+    } else {
+      mainApi.saveMovie(movie)
+        .then(data => {
+          setSavedMovies([...savedMovies, data]);
+        })
+        .catch(err => console.log(err));
+    }
+  };
+
+  // Удаление фильма из сохраненных
+  const handleDeleteMovie = (movieId) => {
+    const foundSavedMovies = JSON.parse(localStorage.getItem('foundSavedMovies'));
+
+    mainApi.deleteMovie(movieId)
+      .then(() => {
+        setSavedMovies(savedMovies.filter(m => m._id !== movieId));
+
+        if (foundSavedMovies) {
+          const newFoundSavedMovies = foundSavedMovies.filter(m => m._id !== movieId);
+
+          localStorage.setItem('foundSavedMovies', JSON.stringify(newFoundSavedMovies));
+        }
+      })
+      .catch(err => console.log(err));
+  };
 
   // Открыть бургер
   const handleBurgerClick = () => {
@@ -266,12 +320,17 @@ function App() {
           <Route path="movies" element={
             <ProtectedRoute 
               isLoggedIn={isLoggedIn}
-              element={Movies} />} />
+              element={Movies}
+              movies={movies}
+              savedMovies={savedMovies}
+              onSaveMovie={handleSaveMovie} />} />
 
           <Route path="saved-movies" element={
             <ProtectedRoute 
               isLoggedIn={isLoggedIn}
-              element={SavedMovies} />} />
+              element={SavedMovies}
+              savedMovies={savedMovies}
+              onDeleteMovie={handleDeleteMovie} />} />
               
           <Route path="profile" element={
             <ProtectedRoute

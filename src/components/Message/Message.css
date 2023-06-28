@@ -18,6 +18,7 @@
     position: relative;
     border-radius: 6px;
     background-color: #f9f9f9;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
     transition: all .3s linear;
     transform: translateY(300px);
   }
@@ -43,15 +44,8 @@
     border: none;
   }
   
-  /* @media screen and (max-width: 480px) {
-    .burger-menu__body {
-      width: 100%;
+  @media screen and (max-width: 480px) {
+    .message  {
+      right: 10px;
     }
   }
-  
-  @media screen and (max-width: 480px) {
-    .burger-menu__close {
-      top: 18px;
-      right: 18px;
-    }
-  }  */
