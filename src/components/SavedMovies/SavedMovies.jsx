@@ -6,7 +6,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 import './SavedMovies.css';
 
-function SavedMovies({ savedMovies, onDeleteMovie }) {
+function SavedMovies({ savedMovies, onDeleteMovie, onEmptyReqMessage }) {
   const [searchReq, setSearchReq] = useState({});
   const [filteredMovies, setFilteredMovies] = useState([]);
 
@@ -57,7 +57,8 @@ function SavedMovies({ savedMovies, onDeleteMovie }) {
       <div className={`container ${size.width <= 550 ? "container_movies-mobile" : ""}`}>
         <SearchForm
           searchReq={searchReq}
-          onMoviesFilter={moviesFilter} />
+          onMoviesFilter={moviesFilter}
+          onEmptyReqMessage={onEmptyReqMessage} />
         {filteredMovies.length 
           ? 
             <MoviesCardList 

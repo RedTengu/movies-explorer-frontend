@@ -82,7 +82,7 @@ function App() {
             navigate(location.pathname, { replace: true })
           }
         })
-        .catch((error) => console.log(error));
+        .catch(err => console.log(err));
     }
   }, []);
 
@@ -137,11 +137,11 @@ function App() {
   }, [isBurgerOpen]);
 
   // Уведомление исчезает через какое то время
-  useEffect(() => {
-    setTimeout(() => {
-      setIsMessageOpen(false);
-    }, 3000);
-  }, [isMessageOpen]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsMessageOpen(false);
+  //   }, 3000);
+  // }, [isMessageOpen]);
 
   // Функции
 
@@ -156,6 +156,13 @@ function App() {
     if(err.includes('409')) {
       setErrorMessage('Такой пользователь уже существует.');
     }
+  }
+
+  // Пустой поисковый запрос
+  const handleEmptyReqMessage = () => {
+    setIsSucces(false);
+    setIsMessageOpen(true);
+    setErrorMessage('Нужно ввести ключевое слово.');
   }
 
   // Регистрация
@@ -269,7 +276,7 @@ function App() {
 
   // Открыть бургер
   const handleBurgerClick = () => {
-    setIsBurgerOpen(isBurgerOpen);
+    setIsBurgerOpen(!isBurgerOpen);
   };
   
   // Закрыть бургер
@@ -323,14 +330,16 @@ function App() {
               element={Movies}
               movies={movies}
               savedMovies={savedMovies}
-              onSaveMovie={handleSaveMovie} />} />
+              onSaveMovie={handleSaveMovie}
+              onEmptyReqMessage={handleEmptyReqMessage} />} />
 
           <Route path="saved-movies" element={
             <ProtectedRoute 
               isLoggedIn={isLoggedIn}
               element={SavedMovies}
               savedMovies={savedMovies}
-              onDeleteMovie={handleDeleteMovie} />} />
+              onDeleteMovie={handleDeleteMovie}
+              onEmptyReqMessage={handleEmptyReqMessage} />} />
               
           <Route path="profile" element={
             <ProtectedRoute

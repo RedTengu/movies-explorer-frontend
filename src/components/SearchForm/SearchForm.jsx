@@ -5,7 +5,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 import './SearchForm.css'
 
-function SearchForm({ searchReq, onMoviesFilter }) {
+function SearchForm({ searchReq, onMoviesFilter, onEmptyReqMessage }) {
   const isChecked = JSON.parse(localStorage.getItem('filterCheckbox'));
 
   let size = useResize();
@@ -44,6 +44,11 @@ function SearchForm({ searchReq, onMoviesFilter }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (searchValue === '') {
+      onEmptyReqMessage();
+      return;
+    }
+
     onMoviesFilter({ searchValue, isShortFilm });
   };
 
@@ -53,7 +58,7 @@ function SearchForm({ searchReq, onMoviesFilter }) {
         size.width <= 550
           ? 
             <section className="search">
-              <form className="search__form" name="search-form" onSubmit={handleSubmit}>
+              <form className="search__form" name="search-form" onSubmit={handleSubmit} noValidate>
                 <div className="search__field">
                   <input 
                     className="search__input" 
@@ -77,7 +82,7 @@ function SearchForm({ searchReq, onMoviesFilter }) {
             </section>   
           :
             <section className="search">
-              <form className="search__form" name="search-form" onSubmit={handleSubmit}>
+              <form className="search__form" name="search-form" onSubmit={handleSubmit} noValidate>
                 <div className="search__field">
                   <span className="search__icon"></span>
                   <input 

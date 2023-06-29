@@ -7,7 +7,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 import './Movies.css';
 
-function Movies({ movies, savedMovies, onSaveMovie }) {
+function Movies({ movies, savedMovies, onSaveMovie, onEmptyReqMessage }) {
   const [isLoading, setIsLoading] = useState(false);
   const [searchReq, setSearchReq] = useState({});
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -60,7 +60,8 @@ function Movies({ movies, savedMovies, onSaveMovie }) {
       <div className={`container ${size.width <= 550 ? "container_movies-mobile" : ""}`}>
         <SearchForm 
           searchReq={searchReq}
-          onMoviesFilter={moviesFilter} />
+          onMoviesFilter={moviesFilter}
+          onEmptyReqMessage={onEmptyReqMessage} />
         {isLoading
           ?
             <Preloader />

@@ -1,5 +1,7 @@
 import { useState, useCallback } from "react";
 
+import isEmail from "validator/es/lib/isEmail";
+
 export function useValidation() {
   const [ values, setValues ] = useState({});
   const [ errors, setErrors ] = useState({});
@@ -7,6 +9,12 @@ export function useValidation() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === 'email') {
+      !isEmail(value)
+        ? e.target.setCustomValidity('Некорректый адрес почты.')
+        : e.target.setCustomValidity('')
+    }
     
     setValues({
       ...values,
