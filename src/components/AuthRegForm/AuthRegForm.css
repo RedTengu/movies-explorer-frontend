@@ -17,15 +17,8 @@
 
 .form__inputs {
   margin: 40px 0 0;
-}
-
-.form__error {
-  margin: 10px 0 0;
-  height: 12px;
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 12px;
-  color: #ff4062;
+  display: flex;
+  flex-direction: column;
 }
 
 .form__btn-wrapper {

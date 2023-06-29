@@ -11,6 +11,12 @@
   background-color: #000;
 }
 
+.submit-btn_disabled {
+  cursor: auto;
+  background-color: #f9f9f9;
+  color: #a0a0a0;
+}
+
 @media screen and (max-width: 480px) {
   .submit-btn {
     padding: 15px 0 15px;

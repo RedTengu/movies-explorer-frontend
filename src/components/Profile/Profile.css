@@ -49,6 +49,10 @@
   outline: none;
 }
 
+.profile__form-input_type_error {
+  color: #ff4062;
+}
+
 .profile__btns {
   margin: 201px 0 0;
   display: flex;

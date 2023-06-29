@@ -5,6 +5,7 @@
   flex-direction: column;
   background: #fdfdfd;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 
 .card__info-wrapper {
@@ -32,6 +33,17 @@
   font-size: 11px;
   line-height: 13px;
   color: #a0a0a0;
+}
+
+.card__poster {
+  width: 364px;
+  height: 203px;
+  object-fit: cover;
+  transition: all .2s ease-in-out;
+}
+
+.card__poster:hover {
+  transform: scale(1.01);
 }
 
 .card__btn {
@@ -64,9 +76,23 @@
   }
 }
 
+@media screen and (max-width: 892px) {
+  .card__poster {
+    width: 339px;
+    height: 190px;
+  }
+}
+
 @media screen and (max-width: 550px) {
   .card {
     width: 300px;
     height: 236px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .card__poster {
+    width: 300px;
+    height: 168px;
   }
 } 
