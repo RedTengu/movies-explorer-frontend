@@ -22,10 +22,6 @@ import moviesApi from '../../utils/MoviesApi';
 import './App.css';
 
 function App() {
-  // Дисклеймер к работе
-  // Понимаю, что все можно было сделать гораздо лаконичнее
-  // Но уже очень мало времени осталось :(
-
   // Перемещаем в нужный роут
   const navigate = useNavigate();
   // Отслеживаем пути роутов
@@ -137,11 +133,11 @@ function App() {
   }, [isBurgerOpen]);
 
   // Уведомление исчезает через какое то время
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsMessageOpen(false);
-  //   }, 3000);
-  // }, [isMessageOpen]);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsMessageOpen(false);
+    }, 3000);
+  }, [isMessageOpen]);
 
   // Функции
 
